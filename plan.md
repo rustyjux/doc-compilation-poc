@@ -222,7 +222,9 @@ validates fidelity and the team keeps configuration and transformations simple.
 
 **Summary:** valuable as an advisory layer for change triage, inclusion or
 exclusion recommendations, and exceptional cases; unsuitable as the sole
-authoritative assembly mechanism.
+authoritative assembly mechanism. Potential additional value in future if documentation
+structure will be more tightly integrated with the provider onboarding process
+(vs dumping each source in sequence).
 
 ### Provisional direction
 
@@ -266,7 +268,7 @@ fidelity, traceability, and failure reporting before confirming this direction.
   - Filter based on rules specified in sources.yaml
   - Keep provider-relevant docs for specific processes and products, drop other
     docs
-    - Omit general supporting content (e.g. APS)
+    - Omit general supporting content (e.g. APS's concept pages)
 - Restructure
   - as necessary, reorganize docs into a consistent structure
   - may include flattening the source repo file structure
