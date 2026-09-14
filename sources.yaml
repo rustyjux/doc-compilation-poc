@@ -22,7 +22,7 @@ sources:
     order: 10
 
   - id: aps-infra-platform-sdx
-    title: APS Infrastructure Platform - SDX Documentation
+    title: API Services Portal - SDX Documentation
     type: git
     repository: https://github.com/bcgov/aps-infra-platform.git
     ref: test

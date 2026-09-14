@@ -10,7 +10,7 @@
 ## Source navigation
 
 - **Connected Services - Getting Started:** all selected files are in source navigation.
-- **APS Infrastructure Platform - SDX Documentation:** appended files absent from source navigation:
+- **API Services Portal - SDX Documentation:** appended files absent from source navigation:
   - `documentation/how-to/sdx-ape-event-mgmt.md`
   - `documentation/how-to/sdx-ape-policy-mgmt.md`
 - **Eligibility Factor Verification TechDoc:** all selected files are in source navigation.

@@ -1,5 +1,5 @@
 schema_version: 1
-generated_at: '2026-09-14T23:07:06.212971+00:00'
+generated_at: '2026-09-14T23:16:06.462564+00:00'
 sources:
 - id: connected-services-getting-started
   title: Connected Services - Getting Started
@@ -62,7 +62,7 @@ sources:
   - docs/limits-and-constraints.md
   - docs/support.md
 - id: aps-infra-platform-sdx
-  title: APS Infrastructure Platform - SDX Documentation
+  title: API Services Portal - SDX Documentation
   type: git
   repository: https://github.com/bcgov/aps-infra-platform.git
   ref: test

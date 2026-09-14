@@ -171,6 +171,10 @@ def main() -> None:
     )
     shutil.copy2(pdf_path, PAGE_DIR / pdf_path.name)
     shutil.copy2(report_path, PAGE_DIR / report_path.name)
+    shutil.copy2(
+        PROJECT_ROOT / "docs" / "poc-evaluation.md",
+        PAGE_DIR / "poc-evaluation.md",
+    )
 
     stylesheet_source = PROJECT_ROOT / "stylesheets" / "extra.css"
     stylesheet_destination = PAGE_DIR / "stylesheets" / "extra.css"

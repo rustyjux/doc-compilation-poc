@@ -6,3 +6,27 @@
   margin-inline-start: 0.15em;
   vertical-align: text-top;
 }
+
+.md-typeset .status-pass,
+.md-typeset .status-not-yet,
+.md-typeset .status-caveat,
+.md-typeset .status-fail {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.md-typeset .status-pass {
+  color: #137333;
+}
+
+.md-typeset .status-not-yet {
+  color: #1565c0;
+}
+
+.md-typeset .status-caveat {
+  color: #b06000;
+}
+
+.md-typeset .status-fail {
+  color: #c5221f;
+}

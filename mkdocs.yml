@@ -11,6 +11,7 @@ theme:
     - content.tabs.link
 
 nav:
+  - POC evaluation: poc-evaluation.md
   - Master documentation: index.md
   - Source manifest: manifest.md
   - Validation report: validation-report.md
@@ -21,6 +22,7 @@ extra_css:
 markdown_extensions:
   - attr_list
   - md_in_html
+  - tables
   - admonition
   - pymdownx.details
   - toc:

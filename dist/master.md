@@ -16,7 +16,7 @@
     - [Roles and responsibilities](#connected-services-getting-started-docsroles-and-responsibilities)
     - [Limits and constraints](#connected-services-getting-started-docslimits-and-constraints)
     - [Support](#connected-services-getting-started-docssupport)
-- [APS Infrastructure Platform - SDX Documentation](#source-aps-infra-platform-sdx)
+- [API Services Portal - SDX Documentation](#source-aps-infra-platform-sdx)
     - [Get Support](#aps-infra-platform-sdx-documentationhow-toget-support)
     - [Onboarding an Organization](#aps-infra-platform-sdx-documentationhow-tosdx-org-onboarding)
     - [Install an Edge Runtime Group](#aps-infra-platform-sdx-documentationhow-tosdx-edge-runtime-groups)
@@ -714,7 +714,7 @@ You may also want to review:
 - [Roles and responsibilities](#connected-services-getting-started-docsroles-and-responsibilities)
 
 
-# APS Infrastructure Platform - SDX Documentation {#source-aps-infra-platform-sdx}
+# API Services Portal - SDX Documentation {#source-aps-infra-platform-sdx}
 
 <!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/how-to/get-support.md -->
 
