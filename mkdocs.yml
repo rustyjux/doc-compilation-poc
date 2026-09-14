@@ -12,6 +12,7 @@ theme:
 
 nav:
   - Master documentation: index.md
+  - Source manifest: manifest.md
   - Validation report: validation-report.md
 
 markdown_extensions:

@@ -5,12 +5,17 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Any
+
+import yaml
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DIST_DIR = PROJECT_ROOT / "dist"
 PAGE_DIR = PROJECT_ROOT / ".work" / "pages"
 SITE_DIR = PROJECT_ROOT / "site"
+SOURCE_LOCK_PATH = PROJECT_ROOT / "sources.lock.yaml"
+NORMALIZED_MANIFEST_PATH = PROJECT_ROOT / ".work" / "normalized" / "manifest.yaml"
 HEADING_PATTERN = re.compile(r"^(#{1,6})(\s+.+)$")
 SOURCE_HEADING_PATTERN = re.compile(r"^#\s+.+\{#source-[^}]+\}\s*$")
 
@@ -42,18 +47,120 @@ def prepare_page(markdown: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _short_sha(value: str, length: int = 12) -> str:
+    return value if len(value) <= length else f"{value[:length]}…"
+
+
+def render_manifest_page(
+    source_lock: dict[str, Any],
+    normalized_manifest: dict[str, Any] | None,
+) -> str:
+    normalized_by_id = {
+        source["id"]: source
+        for source in (normalized_manifest or {}).get("sources", [])
+    }
+    lines = [
+        "# Source manifest",
+        "",
+        "Provenance captured for this generated build.",
+        "",
+        f"- Lock generated at: `{source_lock.get('generated_at', 'unknown')}`",
+        f"- Schema version: `{source_lock.get('schema_version', 'unknown')}`",
+        f"- Sources: `{len(source_lock.get('sources', []))}`",
+        "",
+    ]
+
+    for source in sorted(source_lock.get("sources", []), key=lambda item: item["order"]):
+        lines.extend(
+            [
+                f"## {source.get('title', source['id'])}",
+                "",
+                f"- ID: `{source['id']}`",
+                f"- Type: `{source['type']}`",
+                f"- Order: `{source['order']}`",
+                f"- Content SHA-256: `{source['content_sha256']}`",
+            ]
+        )
+        if source["type"] == "git":
+            revision = source["revision"]
+            repo = source["repository"].removesuffix(".git")
+            lines.extend(
+                [
+                    f"- Repository: [{source['repository']}]({source['repository']})",
+                    f"- Ref: `{source['ref']}`",
+                    f"- Revision: [`{_short_sha(revision, 12)}`]({repo}/commit/{revision})",
+                    f"- Root: `{source.get('root', '.')}`",
+                ]
+            )
+            if component := source.get("techdocs_component"):
+                lines.append(f"- TechDocs component: `{component}`")
+        else:
+            lines.append(f"- Location: `{source['location']}`")
+
+        navigation = source.get("navigation", {})
+        if navigation:
+            unlisted = navigation.get("unlisted_files", [])
+            lines.append(f"- Navigation: `{navigation.get('path', 'mkdocs.yml')}`")
+            if unlisted:
+                lines.append("- Files absent from source navigation (appended last):")
+                lines.extend(f"  - `{path}`" for path in unlisted)
+            else:
+                lines.append("- All selected files appear in source navigation.")
+
+        document_order = source.get("document_order")
+        if not document_order and source["id"] in normalized_by_id:
+            document_order = [
+                document["source_path"]
+                for document in sorted(
+                    normalized_by_id[source["id"]]["documents"],
+                    key=lambda item: item["position"],
+                )
+            ]
+        if not document_order:
+            document_order = [file["path"] for file in source.get("files", [])]
+
+        lines.extend(["", "### Included files", ""])
+        for position, path in enumerate(document_order, start=1):
+            file_meta = next(
+                (file for file in source.get("files", []) if file["path"] == path),
+                None,
+            )
+            if file_meta:
+                lines.append(
+                    f"{position}. `{path}` — `{_short_sha(file_meta['sha256'])}` "
+                    f"({file_meta['size_bytes']} bytes)"
+                )
+            else:
+                lines.append(f"{position}. `{path}`")
+        lines.append("")
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main() -> None:
     master_path = DIST_DIR / "master.md"
     pdf_path = DIST_DIR / "master.pdf"
     report_path = DIST_DIR / "validation-report.md"
-    for required_path in (master_path, pdf_path, report_path):
+    for required_path in (master_path, pdf_path, report_path, SOURCE_LOCK_PATH):
         if not required_path.is_file():
             raise FileNotFoundError(f"Required publication file does not exist: {required_path}")
+
+    with SOURCE_LOCK_PATH.open() as lock_file:
+        source_lock = yaml.safe_load(lock_file)
+
+    normalized_manifest = None
+    if NORMALIZED_MANIFEST_PATH.is_file():
+        with NORMALIZED_MANIFEST_PATH.open() as manifest_file:
+            normalized_manifest = yaml.safe_load(manifest_file)
 
     shutil.rmtree(PAGE_DIR, ignore_errors=True)
     PAGE_DIR.mkdir(parents=True)
     (PAGE_DIR / "index.md").write_text(
         prepare_page(master_path.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
+    (PAGE_DIR / "manifest.md").write_text(
+        render_manifest_page(source_lock, normalized_manifest),
         encoding="utf-8",
     )
     shutil.copy2(pdf_path, PAGE_DIR / pdf_path.name)
