@@ -28,6 +28,10 @@
     - [Policy Management](#aps-infra-platform-sdx-documentationhow-tosdx-ape-policy-mgmt)
 - [Eligibility Factor Verification TechDoc](#source-efv-techdoc)
     - [Introduction](#efv-techdoc-efv-techdoc-v3)
+    - [Getting Started](#efv-techdoc-efv-techdoc-v3--getting-started)
+    - [Eligibility factors](#efv-techdoc-efv-techdoc-v3--eligibility-factors)
+    - [Income Verification](#efv-techdoc-efv-techdoc-v3--income-verification)
+    - [Support and Next Steps](#efv-techdoc-efv-techdoc-v3--support-and-next-steps)
 
 # Connected Services - Getting Started {#source-connected-services-getting-started}
 

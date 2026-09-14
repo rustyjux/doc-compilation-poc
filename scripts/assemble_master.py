@@ -173,6 +173,37 @@ def path_aliases(document: dict[str, Any]) -> set[str]:
     return aliases
 
 
+def is_section_heading(heading: dict[str, Any]) -> bool:
+    """Identify likely document sections vs body text wrongly styled as H1."""
+    if heading.get("skip") or heading["level"] != 1:
+        return False
+    title = heading["title"].strip()
+    if title.endswith((".", "!")):
+        return False
+    return len(title.split()) <= 8
+
+
+def toc_entries_for_source(
+    source_documents: list[dict[str, Any]],
+) -> list[dict[str, str]]:
+    if len(source_documents) != 1:
+        return [
+            {"title": document["title"], "anchor": document["anchor"]}
+            for document in source_documents
+        ]
+
+    document = source_documents[0]
+    entries = [{"title": document["title"], "anchor": document["anchor"]}]
+    for heading in sorted(
+        document["headings"].values(),
+        key=lambda item: item["line_number"],
+    ):
+        if not is_section_heading(heading):
+            continue
+        entries.append({"title": heading["title"], "anchor": heading["anchor"]})
+    return entries
+
+
 def resolve_document(
     current: dict[str, Any],
     target_path: str,
@@ -386,8 +417,8 @@ def main() -> None:
         source_anchor = slugify(f"source--{source['id']}")
         output.append(f"- [{source['title']}](#{source_anchor})")
         output.extend(
-            f"    - [{document['title']}](#{document['anchor']})"
-            for document in source_documents
+            f"    - [{entry['title']}](#{entry['anchor']})"
+            for entry in toc_entries_for_source(source_documents)
         )
 
     for source, _, source_documents in prepared_sources:
