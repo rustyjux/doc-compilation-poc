@@ -1,0 +1,34 @@
+# Human-maintained source selection for the generated-process POC.
+# Resolved revisions, retrieval times, and content hashes will be written to a
+# generated lock file rather than maintained here.
+schema_version: 1
+
+sources:
+  - id: efv-techdoc
+    title: Eligibility Factor Verification TechDoc
+    type: docx
+    location: sources/EFV TechDoc - V3.docx
+    order: 30
+
+  - id: connected-services-getting-started
+    title: Connected Services - Getting Started
+    type: git
+    repository: https://github.com/bcgov/connected-services-techdocs.git
+    ref: main
+    root: getting-started
+    navigation: mkdocs.yml
+    include:
+      - docs/**/*.md
+    order: 10
+
+  - id: aps-infra-platform-sdx
+    title: APS Infrastructure Platform - SDX How-to Guides
+    type: git
+    repository: https://github.com/bcgov/aps-infra-platform.git
+    ref: test
+    root: .
+    navigation: mkdocs.yml
+    techdocs_component: aps-infra-platform-docs
+    include:
+      - documentation/how-to/sdx-*.md
+    order: 20

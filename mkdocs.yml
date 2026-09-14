@@ -1,0 +1,20 @@
+site_name: Provider Journey Master Documentation
+site_description: Generated provider journey master documentation proof of concept
+docs_dir: .work/pages
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.top
+    - toc.follow
+
+nav:
+  - Master documentation: index.md
+  - Validation report: validation-report.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
