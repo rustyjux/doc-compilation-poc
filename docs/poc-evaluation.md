@@ -1,5 +1,6 @@
 # Generated-process POC evaluation
 
+<!-- prettier-ignore -->
 !!! success "Qualified pass"
 A generated core process can assemble the master documentation from
 TechDocs and Word sources. It is viable as the authoritative assembly
@@ -47,7 +48,7 @@ assessment below covers the qualities of the underlying process.
 
 ## Assessment against output requirements
 
-### Table of contents — <span class="status-pass">✅ Met</span>
+<h3>Table of contents — <span class="status-pass">✅ Met</span></h3>
 
 The generated Markdown and PDF contain a complete source/page contents list.
 The Word source is represented by its detected major sections rather than only
@@ -61,7 +62,7 @@ stakeholders need subsection-level navigation.
 The GitHub Pages-specific heading hierarchy also supplies usable in-page
 navigation.
 
-### Heading fidelity — <span class="status-caveat">⚠️ Caveat</span>
+<h3>Heading fidelity — <span class="status-caveat">⚠️ Caveat</span></h3>
 
 Source and page headings are normalized into a consistent master hierarchy.
 The validation report shows no headings capped at H6.
@@ -69,12 +70,13 @@ The validation report shows no headings capped at H6.
 The Word section detection is approximate, so broader Word inputs could require
 source-specific configuration or stricter style conventions.
 
+<!-- prettier-ignore -->
 !!! warning "Word heading caveat"
-The original EFV TechDoc used H1 styles on ordinary paragraphs. The POC
-could not normalize that correctly, so the source document was manually
-corrected.
+    The original EFV TechDoc used H1 styles on ordinary paragraphs. The POC
+    could not normalize that correctly, so the source document was manually
+    corrected.
 
-### Internal and cross-source links — <span class="status-pass">✅ Met</span>
+<h3>Internal and cross-source links — <span class="status-pass">✅ Met</span></h3>
 
 The build rewrote **58** links to locations within the combined output,
 including Connected Services ↔ APS links where the target was selected.
@@ -93,7 +95,7 @@ document rather than becoming dead links. Remaining work is policy: include
 those pages, or explicitly allowlist them as approved external TechDocs
 targets.
 
-### External links — <span class="status-pass">✅ Met</span>
+<h3>External links — <span class="status-pass">✅ Met</span></h3>
 
 The build preserved **18** absolute external links and converted **6**
 site-relative application links into usable DevHub URLs. External links are
@@ -101,26 +103,24 @@ visually marked in the published outputs.
 
 Automated reachability checking is deferred and was not required for this POC.
 
-### Images — <span class="status-caveat">⚠️ Caveat</span>
+<h3>Images — <span class="status-caveat">⚠️ Caveat</span></h3>
 
 The selected APS SVG is copied into the output and retained on the Pages site
 (see "SDX Architecture" under API Services Portal). Draw.io SVGs do not render
-reliably in Typst, so the PDF build rasterizes them through Chrome. The PDF
-contains the figure with alternative text.
+reliably in Typst, so the PDF build rasterizes them through Chrome.
 
-!!! warning "Image caveats"
-Linked-image handling is demonstrated, but it depends on a PDF-specific
-rasterization workaround. Embedded Word images were not tested. Additional
-tests should cover multiple images, captions, sizing, and a Word-embedded
-image.
+<!-- prettier-ignore -->
+!!! warning "Image caveats" 
+    Embedded Word images were not tested. Additional tests should cover multiple
+    images, captions, sizing, and a Word-embedded image.
 
-### Tables — <span class="status-pass">✅ Met</span> with presentation caveats
+<h3>Tables — <span class="status-pass">✅ Met</span> with presentation caveats</h3>
 
 Markdown tables are retained and represented as tables in the PDF. Their text is
 present, including the larger APS parameter and role tables. See "SDX
 Environments" under API Services Portal in the navigation for examples.
 
-### Output formats — <span class="status-pass">✅ Met</span>
+<h3>Output formats — <span class="status-pass">✅ Met</span></h3>
 
 | Output                | Role                                                              |
 | --------------------- | ----------------------------------------------------------------- |
@@ -128,12 +128,13 @@ Environments" under API Services Portal in the navigation for examples.
 | `dist/master.pdf`     | Initial distribution format                                       |
 | MkDocs / GitHub Pages | Shareable document, PDF download, manifest, and validation report |
 
-!!! info "Markdown and PDF are not identical inputs"
-Canonical Markdown retains MkDocs Material tabs and admonitions. The PDF
-build expands those constructs into labeled blockquotes. This is
-deliberate so the PDF stays readable.
+<!-- prettier-ignore -->
+!!! info "Markdown and PDF are not identical outputs"
+    Canonical Markdown retains MkDocs Material tabs and admonitions. The PDF
+    build expands those constructs into labeled blockquotes. This is
+    deliberate so the PDF stays readable.
 
-### Candidate versus approved publication — <span class="status-not-yet">🕒 Not yet</span>
+<h3>Candidate versus approved publication — <span class="status-not-yet">🕒 Not yet</span></h3>
 
 The current workflow builds and deploys from `main`. There is no separate
 candidate artifact, review step, or maintainer approval before a version is
@@ -170,7 +171,8 @@ Before using it as an ongoing production update process:
 6. Define candidate versus approved publication and the maintainer approval
    step.
 
+<!-- prettier-ignore -->
 !!! note "AI assistance"
-AI is **not** needed for authoritative assembly. It remains a reasonable
-future layer for explaining source changes and recommending inclusion,
-exclusion, or restructuring for maintainer review.
+    AI is **not** needed for authoritative assembly. It remains a reasonable
+    future layer for explaining source changes and recommending inclusion,
+    exclusion, or restructuring for maintainer review.
