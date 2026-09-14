@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import shutil
 import subprocess
 import sys
@@ -10,9 +11,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DIST_DIR = PROJECT_ROOT / "dist"
 PAGE_DIR = PROJECT_ROOT / ".work" / "pages"
 SITE_DIR = PROJECT_ROOT / "site"
+HEADING_PATTERN = re.compile(r"^(#{1,6})(\s+.+)$")
+SOURCE_HEADING_PATTERN = re.compile(r"^#\s+.+\{#source-[^}]+\}\s*$")
 
 
-def add_pdf_link(markdown: str) -> str:
+def prepare_page(markdown: str) -> str:
     lines = markdown.splitlines()
     if not lines or not lines[0].startswith("# "):
         raise ValueError("Expected the master document to start with an H1")
@@ -20,6 +23,22 @@ def add_pdf_link(markdown: str) -> str:
         "",
         "[Download PDF](master.pdf){ .md-button .md-button--primary }",
     ]
+
+    inside_source = False
+    in_fence = False
+    for index, line in enumerate(lines):
+        stripped = line.lstrip()
+        if stripped.startswith(("```", "~~~")):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if SOURCE_HEADING_PATTERN.match(line):
+            inside_source = True
+        if inside_source and (heading := HEADING_PATTERN.match(line)):
+            level = len(heading.group(1))
+            lines[index] = f"{'#' * min(level + 1, 6)}{heading.group(2)}"
+
     return "\n".join(lines) + "\n"
 
 
@@ -34,7 +53,7 @@ def main() -> None:
     shutil.rmtree(PAGE_DIR, ignore_errors=True)
     PAGE_DIR.mkdir(parents=True)
     (PAGE_DIR / "index.md").write_text(
-        add_pdf_link(master_path.read_text(encoding="utf-8")),
+        prepare_page(master_path.read_text(encoding="utf-8")),
         encoding="utf-8",
     )
     shutil.copy2(pdf_path, PAGE_DIR / pdf_path.name)
