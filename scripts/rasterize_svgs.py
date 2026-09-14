@@ -103,6 +103,7 @@ def rasterize_svg(chrome: str, svg_path: Path, png_path: Path) -> None:
             chrome_args.extend(["--no-sandbox", "--disable-dev-shm-usage"])
         chrome_args.append(html_path.resolve().as_uri())
         result = subprocess.run(
+            chrome_args,
             capture_output=True,
             text=True,
         )
