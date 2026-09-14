@@ -6,6 +6,7 @@ from pathlib import Path
 from expand_tabs import prepare_pdf_markdown
 from install_pandoc import PANDOC_PATH
 from install_typst import TYPST_PATH
+from rasterize_svgs import rasterize_dist_svgs, rewrite_svg_images
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -27,10 +28,14 @@ def main() -> None:
         raise FileNotFoundError(f"Missing external link icon: {EXTERNAL_LINK_ICON}")
 
     PDF_MARKDOWN_PATH.parent.mkdir(parents=True, exist_ok=True)
+    replacements = rasterize_dist_svgs()
     PDF_MARKDOWN_PATH.write_text(
-        prepare_pdf_markdown(
-            MASTER_PATH.read_text(encoding="utf-8"),
-            external_link_icon="templates/external-link.svg",
+        rewrite_svg_images(
+            prepare_pdf_markdown(
+                MASTER_PATH.read_text(encoding="utf-8"),
+                external_link_icon="templates/external-link.svg",
+            ),
+            replacements,
         ),
         encoding="utf-8",
     )

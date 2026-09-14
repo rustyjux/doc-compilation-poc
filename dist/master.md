@@ -16,7 +16,8 @@
     - [Roles and responsibilities](#connected-services-getting-started-docsroles-and-responsibilities)
     - [Limits and constraints](#connected-services-getting-started-docslimits-and-constraints)
     - [Support](#connected-services-getting-started-docssupport)
-- [APS Infrastructure Platform - SDX How-to Guides](#source-aps-infra-platform-sdx)
+- [APS Infrastructure Platform - SDX Documentation](#source-aps-infra-platform-sdx)
+    - [Get Support](#aps-infra-platform-sdx-documentationhow-toget-support)
     - [Onboarding an Organization](#aps-infra-platform-sdx-documentationhow-tosdx-org-onboarding)
     - [Install an Edge Runtime Group](#aps-infra-platform-sdx-documentationhow-tosdx-edge-runtime-groups)
     - [Setup Organization Signing](#aps-infra-platform-sdx-documentationhow-tosdx-org-signing)
@@ -24,6 +25,10 @@
     - [Managing Services](#aps-infra-platform-sdx-documentationhow-tosdx-services)
     - [Connecting a Service](#aps-infra-platform-sdx-documentationhow-tosdx-connections)
     - [Connection Resources](#aps-infra-platform-sdx-documentationhow-tosdx-connection-resources)
+    - [Secure Data Exchange (SDX)](#aps-infra-platform-sdx-documentationconceptssecure-data-exchange)
+    - [Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
+    - [SDX Data Access Protocol](#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol)
+    - [SDX Environments](#aps-infra-platform-sdx-documentationreferencesdxenvironments)
     - [Event Management](#aps-infra-platform-sdx-documentationhow-tosdx-ape-event-mgmt)
     - [Policy Management](#aps-infra-platform-sdx-documentationhow-tosdx-ape-policy-mgmt)
 - [Eligibility Factor Verification TechDoc](#source-efv-techdoc)
@@ -35,7 +40,7 @@
 
 # Connected Services - Getting Started {#source-connected-services-getting-started}
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/index.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/index.md -->
 
 ## Connected Services overview {#connected-services-getting-started-docsindex}
 
@@ -62,7 +67,7 @@ To understand the broader purpose behind these capabilities, review [Purpose and
 
 To understand how Connected Services components fit together, review [Connected Services building blocks](#connected-services-getting-started-docsbuilding-blocks). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/purpose-and-value.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/purpose-and-value.md -->
 
 ## Purpose and value {#connected-services-getting-started-docspurpose-and-value}
 
@@ -117,7 +122,7 @@ Connected Services is delivered through reusable building blocks.
 
 To see how these components work together, review [Connected Services building blocks](#connected-services-getting-started-docsbuilding-blocks). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/building-blocks.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/building-blocks.md -->
 
 ## Connected services building blocks {#connected-services-getting-started-docsbuilding-blocks}
 
@@ -164,7 +169,7 @@ It supports consistent definitions, improved discoverability, and reuse across m
 
 [Explore the Catalogue](https://developer.gov.bc.ca/catalogue). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/authoritative-data-register.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/authoritative-data-register.md -->
 
 ## Authoritative Data Register (ADR) {#connected-services-getting-started-docsauthoritative-data-register}
 
@@ -226,7 +231,7 @@ Authoritative certification is not a one-time approval. It requires ongoing over
 - Data Register Standards 
 - Glossary and Data Dictionary 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/eligibility-factor-verification.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/eligibility-factor-verification.md -->
 
 ## Eligibility Factor Verification (EFV) {#connected-services-getting-started-docseligibility-factor-verification}
 
@@ -291,7 +296,7 @@ Verification is most effective when it reduces the need for applicants to upload
 - Authoritative Data Directory 
 - Trust Metadata and Lineage Guidelines  
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/secure-data-exchange.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/secure-data-exchange.md -->
 
 ## Secure Data Exchange (SDX) {#connected-services-getting-started-docssecure-data-exchange}
 
@@ -299,67 +304,73 @@ Verification is most effective when it reduces the need for applicants to upload
 
 ### What it is {#connected-services-getting-started-docssecure-data-exchange--what-it-is}
 
-_Secure Data Exchange_ (SDX) serves as the secure exchange layer within Connected Services, enabling the controlled and protected transfer of data between participating organizations. 
+_Secure Data Exchange_ (SDX) helps organizations safely share sensitive information with each other.
 
-The exchange operates behind the scenes to ensure that when a citizen’s information is sent or received, the data remains protected throughout the process - from initial exchange to storage. 
+It protects information as it moves from one organization to another and ensures that only approved systems can send and receive it.
 
-SDX is built around two foundational components: 
+SDX protects exchanges by:
 
-- **Security Controls**  
-This includes encryption, authentication, and data integrity mechanisms that protect information in transit and verify participating systems. 
-- **Governance and Compliance**  
-This includes auditing and logging functionality, policy enforcement, non-repudiation, and timestamping to support oversight and accountability. 
+- Encrypting information while it is being exchanged
+- Confirming that participating systems are approved
+- Checking that information has not been changed in transit
+- Applying rules that control access and permitted actions
+- Keeping records of exchanges for auditing and review
+- Recording who participated in an exchange when it happened
 
-Together, these components ensure that sensitive data exchanged through SDX maintains confidential, protected, and compliant with B.C.’s security and regulatory requirements. 
+Together, these controls help organizations protect sensitive information and support B.C.'s security, privacy, and regulatory requirements.
 
-### Who this is for {#connected-services-getting-started-docssecure-data-exchange--who-this-is-for}
+### Who should use SDX {#connected-services-getting-started-docssecure-data-exchange--who-should-use-sdx}
 
-SDX is intended for any organization participating in Connected Services that needs to securely exchange sensitive data across organizational boundaries. 
+SDX is for organizations participating in Connected Services that need to share sensitive information with other organizations.
 
-This includes organizations such as LTSA and ICBC, as well as other ministries and partners. 
+Participants may include B.C. government ministries and partner organizations such as LTSA and ICBC.
 
-Participating organizations may act as data providers, data consumers, or both. 
+An organization can:
 
-### When to use Secure Data Exchange {#connected-services-getting-started-docssecure-data-exchange--when-to-use-secure-data-exchange}
+- Provide information or services to other approved organizations
+- Consume information or services provided by another organization
+- Do both
 
-SDX is required when sensitive data (e.g., personal, financial, or health-related information) is being shared across organizational boundaries. 
+### When you should use SDX {#connected-services-getting-started-docssecure-data-exchange--when-you-should-use-sdx}
 
-Use SDX when: 
+Use SDX when information needs to be shared between organizations and the exchange needs stronger security, access control, or accountability.
 
-- Data exchange requires enhanced security controls due to sensitivity of the data 
-- Policy-based access enforcement is needed 
-- Auditability and non-repudiation are required 
+SDX may be appropriate when:
 
-SDX is not required for public or non-sensitive data that does not require cross-boundary security controls. 
+- Personal, financial, or other sensitive information is being shared
+- Access must be limited to approved organizations or systems
+- The exchange must be logged or available for audit
+- There must be a reliable record of who participated in the exchange
 
-### How it works (high-level) {#connected-services-getting-started-docssecure-data-exchange--how-it-works-high-level}
+SDX is generally not needed for public or non-sensitive information that does not require these additional controls.
 
-SDX operates through an onboarding and registration process within the SDX ecosystem. 
+### How it works {#connected-services-getting-started-docssecure-data-exchange--how-it-works}
 
-At a high level: 
+Organizations complete the SDX onboarding process before exchanging information. Onboarding sets up the organization, its systems, roles, and secure connections.
 
-1. The SDX Operator registers their organization. 
-2. An Organization Administrator assigns the necessary System Owner role(s). 
-3. The System Owner(s) register(s) services and subsystems and is able to browse the service catalogue. 
-4. An OpenAPI Specification (OAS) file is submitted for API registration. This spec must be in YAML format.  
-5. Once onboarded, an Edge Server is then provisioned. 
-6. Secure connections are established between participating systems within the SDX ecosystem. 
+Once onboarded:
 
-All exchanges are authenticated, authorized, and logged automatically. 
- 
-Detailed onboarding steps and technical configuration guidance are available in [SDX Onboarding – TechDocs](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/sdx-onboarding). <span style="color:red; font-weight:bold">TODO Unstable link!</span> 
+- Providers make services available to approved consumers. API providers register their APIs using an OpenAPI Specification (OAS).
+- Consumers request access to the services they need.
+- SDX applies security, access, and logging controls to exchanges between participating systems.
 
-### Relationship to privacy and security {#connected-services-getting-started-docssecure-data-exchange--relationship-to-privacy-and-security}
+SDX Edge Servers provide the secure connection used by participating organizations.
 
-SDX provides the technical implementation of the privacy and security controls described in Privacy and Security. 
+For detailed setup instructions, see [SDX onboarding documentation](#aps-infra-platform-sdx-documentationhow-tosdx-org-onboarding).
 
-Review Privacy and security for information on governance alignment and accountability structures. 
+### Privacy and security responsibilities {#connected-services-getting-started-docssecure-data-exchange--privacy-and-security-responsibilities}
+
+SDX provides technical controls that help organizations meet privacy and security requirements.
+
+Using SDX does not replace an organization's responsibility to meet its own privacy, security, governance, and data management requirements.
+
+See [Privacy and security](#connected-services-getting-started-docsprivacy-and-security) for more information about organizational responsibilities and accountability.
 
 ### Where to go next {#connected-services-getting-started-docssecure-data-exchange--where-to-go-next}
 
-- [SDX Onboarding – TechDocs](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/sdx-onboarding) <span style="color:red; font-weight:bold">TODO Unstable link!</span> 
+- [SDX onboarding documentation](#aps-infra-platform-sdx-documentationhow-tosdx-org-onboarding)
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/privacy-and-security.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/privacy-and-security.md -->
 
 ## Privacy and security {#connected-services-getting-started-docsprivacy-and-security}
 
@@ -434,7 +445,7 @@ Privacy and security controls enforce rules — but those rules are established 
 
 To understand how oversight, accountability, and decision-making structures shape Connected Services, review [Governance and policy](#connected-services-getting-started-docsgovernance-and-policy). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/governance-and-policy.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/governance-and-policy.md -->
 
 ## Governance and policy {#connected-services-getting-started-docsgovernance-and-policy}
 
@@ -495,7 +506,7 @@ Governance depends on clearly defined roles across ministries and technical team
 
 To see how different actors contribute to publishing, accessing, and overseeing data, review [Roles and responsibilities](#connected-services-getting-started-docsroles-and-responsibilities). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/roles-and-responsibilities.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/roles-and-responsibilities.md -->
 
 ## Roles and responsibilities {#connected-services-getting-started-docsroles-and-responsibilities}
 
@@ -505,7 +516,7 @@ _Connected Services_ involves multiple roles across technical, program, and gove
 
 Clear roles and responsibilities are essential to ensure that data is published, accessed, maintained, and exchanged responsibly. 
 
-As Connected Services is implemented through its initial use case, role definitions and associated responsibilities will continue to be refined and published.Shape 
+As Connected Services is implemented through its initial use case, role definitions and associated responsibilities will continue to be refined and published. 
 
 ### Data providers (Suppliers) {#connected-services-getting-started-docsroles-and-responsibilities--data-providers-suppliers}
 
@@ -571,7 +582,7 @@ Roles and responsibilities continue to evolve alongside Connected Services imple
 
 To understand the current boundaries and phased rollout of capabilities, review [Limits and constraints](#connected-services-getting-started-docslimits-and-constraints). 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/limits-and-constraints.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/limits-and-constraints.md -->
 
 ## Limits and constraints {#connected-services-getting-started-docslimits-and-constraints}
 
@@ -613,7 +624,7 @@ Teams should:
 - Monitor updates to documentation and governance standards 
 - Engage early when planning integrations that depend on emerging capabilities 
 
-<!-- source: https://github.com/bcgov/connected-services-techdocs.git@78dfbd47461f218c6de26740075b142761f495c6:getting-started/docs/support.md -->
+<!-- source: https://github.com/bcgov/connected-services-techdocs.git@50959b28d410f638f0bccdd48f49c35f4179c24e:getting-started/docs/support.md -->
 
 ## Support {#connected-services-getting-started-docssupport}
 
@@ -646,7 +657,7 @@ Seek support if:
 
 For support related to API platform services, onboarding, access, gateway setup, or technical issues, use the APS support guidance:
 
-[API Platform Services support](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/get-support/)
+[API Platform Services support](#aps-infra-platform-sdx-documentationhow-toget-support)
 
 This is the primary source for current APS support channels and instructions.
 
@@ -703,7 +714,81 @@ You may also want to review:
 - [Roles and responsibilities](#connected-services-getting-started-docsroles-and-responsibilities)
 
 
-# APS Infrastructure Platform - SDX How-to Guides {#source-aps-infra-platform-sdx}
+# APS Infrastructure Platform - SDX Documentation {#source-aps-infra-platform-sdx}
+
+<!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/how-to/get-support.md -->
+
+## Get Support {#aps-infra-platform-sdx-documentationhow-toget-support}
+
+
+<!-- overview -->
+
+This guide explains how to get help with the API Services Portal and outlines
+our support hours and channels.
+
+### Support hours {#aps-infra-platform-sdx-documentationhow-toget-support--support-hours}
+
+Support is available during business hours, 8:30 am to 4:30 pm Pacific Time,
+Monday to Friday, for all teams using the platform. During these hours, you can
+reach out via the [API-ProgramServices-operations](https://teams.microsoft.com/l/channel/19%3Ac81bf553c07647cebeb2aeb034ec0d25%40thread.tacv2/API-ProgramServices-operations?groupId=a80418da-c27b-406e-89ab-7695b61924d8&tenantId=6fdb5200-3d0d-4a8a-b036-d3685e359adc)
+Microsoft Teams channel or our [Support Portal](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/2).
+
+Extended/out-of-hours support is available 24/7 for API providers running
+critical services with geo-redundancy. The cost of providing this service is
+shared equally between all teams with a Service Level Agreement that includes
+extended support. Teams with extended support should reach out via the Extended
+Support Portal.
+
+### Support channels {#aps-infra-platform-sdx-documentationhow-toget-support--support-channels}
+
+### Microsoft Teams {#aps-infra-platform-sdx-documentationhow-toget-support--microsoft-teams}
+
+API Program Services uses two Microsoft Teams channels:
+
+**[API-ProgramServices-operations](https://teams.microsoft.com/l/channel/19%3Ac81bf553c07647cebeb2aeb034ec0d25%40thread.tacv2/API-ProgramServices-operations?groupId=a80418da-c27b-406e-89ab-7695b61924d8&tenantId=6fdb5200-3d0d-4a8a-b036-d3685e359adc)** — questions and usage guidance about the API Services Portal and API Gateway. Post here for real-time support and community discussion.
+
+**[API-ProgramServices-alerts](https://teams.microsoft.com/l/channel/19%3A9e361a77b63442ea9726ca560738205c%40thread.tacv2/API-ProgramServices-alerts?groupId=a80418da-c27b-406e-89ab-7695b61924d8&tenantId=6fdb5200-3d0d-4a8a-b036-d3685e359adc)** — time-sensitive, user-impacting notices: incidents, outages, scheduled maintenance, releases, and breaking changes.
+
+The channels are currently restricted to BC Public Service employees. External clients can [request access to a Teams channel](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/2/create/5?summary=Microsoft+Teams+channel+access+%28API+Program+Services%29&description=Please+grant+access+to+the+API+Program+Services+Microsoft+Teams+channels.%0A%0AInclude%3A%0A%E2%80%A2+Organization+or+ministry+name%0A%E2%80%A2+Email+address%28es%29+to+add+to+Teams%0A%E2%80%A2+Channels%3A+API-ProgramServices-operations+%28support%29%2C+API-ProgramServices-alerts+%28incidents+and+notices%29%2C+or+both%0A%0AAdditional+context+%28optional%29%3A).
+
+**API-ProgramServices-operations** is the best place for:
+
+- Quick questions
+- Community discussion
+- Real-time troubleshooting
+- Sharing experiences with other API providers
+
+### Support tickets {#aps-infra-platform-sdx-documentationhow-toget-support--support-tickets}
+
+For more complex issues or when you need a tracked response:
+
+1. Visit our [support portal](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/2)
+2. Create a ticket describing your issue
+3. We'll respond via email within 3-5 business days
+
+This is the best channel for:
+
+- Complex technical issues
+- Security concerns
+- Access requests
+- Feature requests
+
+### Extended support {#aps-infra-platform-sdx-documentationhow-toget-support--extended-support}
+
+For teams with critical services and an extended support SLA:
+
+1. Access the [Extended Support Portal](https://dpdd.atlassian.net/servicedesk/customer/portal/9/group/54/create/158)
+2. Complete the form and submit your request
+3. We'll provide a status update via email within 1 hour
+
+### Monitor platform status {#aps-infra-platform-sdx-documentationhow-toget-support--monitor-platform-status}
+
+To see our historical uptime and any current incidents, visit the [APS status page](https://status.api.gov.bc.ca/).
+
+### Next steps {#aps-infra-platform-sdx-documentationhow-toget-support--next-steps}
+
+- [Geographic Redundancy and Failover](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/concepts/geo-redundancy.md)
+- [Production Readiness Checklist](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/prod-checklist.md) 
 
 <!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/how-to/sdx-org-onboarding.md -->
 
@@ -941,7 +1026,7 @@ for using one of the shared runtime groups (`community-hosted`).
 
 To learn more about the communication protocol between a client Edge Runtime
 Group and a service Edge Runtime Group, visit the
-[SDX Data Access Protocol](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/sdx/data-access-protocol.md) document.
+[SDX Data Access Protocol](#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol) document.
 
 The steps described in this page are performed by the following roles:
 
@@ -967,7 +1052,7 @@ Use cases for `client-hosted`:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-edge-runtime-groups--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 - [Install Helm](https://helm.sh/docs/intro/install/) (if deploying the runtime group infrastructure)
 
 ### Establish a new runtime group {#aps-infra-platform-sdx-documentationhow-tosdx-edge-runtime-groups--establish-a-new-runtime-group}
@@ -1335,7 +1420,7 @@ Use cases:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-org-signing--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 
 ### Request a new signing key CSR {#aps-infra-platform-sdx-documentationhow-tosdx-org-signing--request-a-new-signing-key-csr}
 
@@ -1403,7 +1488,7 @@ certificate for the CA in `root.crt`.
 
 Use one of the root certificates from below depending on your environment.
 
-For details about environments, visit [SDX Environments](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/sdx/environments.md).
+For details about environments, visit [SDX Environments](#aps-infra-platform-sdx-documentationreferencesdxenvironments).
 
 ### Playground {#aps-infra-platform-sdx-documentationhow-tosdx-org-signing--playground}
 
@@ -1515,7 +1600,7 @@ Use cases:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-subsystems--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 
 ### Register a subsystem {#aps-infra-platform-sdx-documentationhow-tosdx-subsystems--register-a-subsystem}
 
@@ -1822,7 +1907,7 @@ Use cases:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-services--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 
 ### Register a service {#aps-infra-platform-sdx-documentationhow-tosdx-services--register-a-service}
 
@@ -1830,7 +1915,7 @@ To register a service, you need to identify the `environment` you are deploying 
 to, the `upstream URL` for routing to where your service is running,
 and the OpenAPI specification itself.
 
-For details about valid `environment` values, visit [Environment labels](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/sdx/environments.md#environment-labels).
+For details about valid `environment` values, visit [Environment labels](#aps-infra-platform-sdx-documentationreferencesdxenvironments--environment-labels).
 
 === "Restish CLI"
 
@@ -2010,7 +2095,7 @@ Use cases:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-connections--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 
 ### Request access (as consumer) {#aps-infra-platform-sdx-documentationhow-tosdx-connections--request-access-as-consumer}
 
@@ -2409,6 +2494,414 @@ The following upgrades to this pattern are required:
 | `verify`      | Verification of Edge Runtime token on request from Client                      |
 | `counterSign` | Service organization transaction signature on response                         |
 
+<!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/concepts/secure-data-exchange.md -->
+
+## Secure Data Exchange (SDX) {#aps-infra-platform-sdx-documentationconceptssecure-data-exchange}
+
+
+<!-- overview -->
+
+Secure Data Exchange (SDX) is a service designed to facilitate secure, reliable transfer of data between government agencies and external partners. As data sharing becomes increasingly critical to service delivery, SDX provides a standardized, policy-compliant mechanism that reduces security risks while simplifying integration. This document covers the fundamental concepts of SDX, how it complements the API Gateway within the platform architecture, and the core mechanisms that enable safe data exchange.
+
+![SDX Architecture](assets/aps-infra-platform-sdx/documentation/artifacts/SDX.svg)
+
+The Edge Server is a forward proxy for the service consumer (IS client) and a reverse proxy for the service provider (IS service). Each proxy interaction provides an opportunity to apply policies, such as:
+
+- privacy zone identity token exchange
+- timestamping
+- legal entity signatures (electronic seals)
+- logging
+- access control policy enforcement
+
+**Clients**: Clients invoke services and can be either an SDX member organization or a subsystem within that organization.
+
+**Services**: Services are API implementations described using an OpenAPI specification. They belong to a subsystem and expose functionality to SDX clients.
+
+Edge Servers sit in an organization's DMZ, where they are able to communicate with other Edge Servers in a secure and auditable way.
+
+For information about environments, visit [SDX Environments](#aps-infra-platform-sdx-documentationreferencesdxenvironments).
+
+### Roles {#aps-infra-platform-sdx-documentationconceptssecure-data-exchange--roles}
+
+| Role               | Function                                                                       |
+| ------------------ | ------------------------------------------------------------------------------ |
+| SDX Operator       | Establish member organizations and assign legal representatives Org Admin role |
+| Organization Admin | Manage System Admin role assignment for the organization                       |
+| System Admin       | Manage subsystem onboarding for the particular organization                    |
+| Subsystem Owner    | Manage service catalog entries and key sets for a particular subsystem         |
+| Tech Lead          | Manage service catalog entries and key sets for a particular subsystem         |
+| Access Manager     | Review/approve connection requests to services for a particular subsystem      |
+
+### The public consumer host (PZGW) {#aps-infra-platform-sdx-documentationconceptssecure-data-exchange--the-public-consumer-host-pzgw}
+
+`pzgw` is the shared, community-hosted runtime group that acts as the public
+consumer entry point for member organizations that do not run their own
+Internet-routable edge. It is not a general-purpose provider runtime: a
+consumer application reaches SDX through PZGW's `consumerEndpoint`, PZGW then
+forwards the request edge-to-edge to the **provider's own runtime group**
+(over mTLS, using that runtime's `sdxEndpoint`), and the provider edge
+forwards it to the private provider `upstreamUrl`.
+
+Because PZGW is the only runtime with a widely recognizable public
+(`*.api.gov.bc.ca`) hostname, it is easy to mistake it for the provider
+runtime in a connection. It is not: the provider must still register and
+host its own runtime group (`client-hosted` or another `community-hosted`
+runtime group), and that runtime — not PZGW — must appear in the
+provider's organization `hostedOrganizations`.
+
+### Next steps {#aps-infra-platform-sdx-documentationconceptssecure-data-exchange--next-steps}
+
+If you would like to dive deeper or start implementing services on SDX, check out the
+following resources:
+
+How-to guides
+
+- [Onboarding an organization onto SDX](#aps-infra-platform-sdx-documentationhow-tosdx-org-onboarding)
+- [Install an edge runtime group](#aps-infra-platform-sdx-documentationhow-tosdx-edge-runtime-groups)
+- [Managing subsystems](#aps-infra-platform-sdx-documentationhow-tosdx-subsystems)
+- [Managing services](#aps-infra-platform-sdx-documentationhow-tosdx-services)
+- [Connecting a service](#aps-infra-platform-sdx-documentationhow-tosdx-connections)
+
+<!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/reference/restish-cli.md -->
+
+## Restish CLI {#aps-infra-platform-sdx-documentationreferencerestish-cli}
+
+
+Restish is a command-line HTTP client designed for working with REST APIs through simple, readable commands. It combines API discovery, authentication, request execution, and response formatting into a single workflow, making it useful for both quick testing and repeatable API operations.
+
+Key capabilities include:
+
+- **OpenAPI-first interaction**: auto-discovers operations from API descriptions.
+- **Short, command-style syntax**: invokes endpoints as CLI subcommands instead of manually crafting raw HTTP requests.
+- **Built-in auth support**: handles common schemes (including OAuth flows) through API profiles.
+- **Configurable API aliases**: stores named API definitions for faster reuse across environments.
+- **Structured output options**: prints responses in formats like JSON and YAML for easy piping and scripting.
+- **Plugin/extensibility model**: supports additional functionality via extensions.
+
+In practice, Restish works well as a lightweight alternative to GUI API tools when you want terminal-native, script-friendly API access.
+
+Homepage: https://rest.sh
+
+### Installation {#aps-infra-platform-sdx-documentationreferencerestish-cli--installation}
+
+=== "Linux"
+
+    If you are on Linux, you can install by downloading a compressed archive:
+
+    ```sh
+    curl -LO https://github.com/rest-sh/restish/releases/download/v0.21.2/restish-0.21.2-linux-amd64.tar.gz
+    tar -xf restish-0.21.2-linux-amd64.tar.gz
+    sudo mv restish /usr/local/bin/.
+    ```
+
+=== "macOS"
+
+    If you are on macoS, you can install by downloading a compressed archive:
+
+    ```sh
+    curl -LO https://github.com/rest-sh/restish/releases/download/v0.21.2/restish-0.21.2-darwin-amd64.tar.gz
+    tar -xf restish-0.21.2-darwin-amd64.tar.gz
+    sudo mv restish /usr/local/bin/.
+    ```
+
+    > Note: In the case where the apis.json becomes invalid and the restish cli panics, you can edit
+    > the file configuration file directly at `~/Library/Application Support/restish/apis.json`
+
+### Usage with SDX {#aps-infra-platform-sdx-documentationreferencerestish-cli--usage-with-sdx}
+
+### Configure the API {#aps-infra-platform-sdx-documentationreferencerestish-cli--configure-the-api}
+
+Edit the restish config and add the below `sdxstg` and `sdx` api shortname details.
+
+```sh
+restish api edit
+```
+
+=== "Staging"
+
+    Staging environment is for service providers to verify the installation of SDX
+    and test new functionality before promoting it to production.
+
+    > NOTE: There is NO data or service quality in this environment!
+
+    ```json
+    {
+      "$schema": "https://rest.sh/schemas/apis.json",
+      "sdxstg": {
+        "base": "https://api-gov-bc-ca.test.api.gov.bc.ca/ds/api/sdx/v1",
+        "profiles": {
+          "default": {
+            "auth": {
+              "name": "oauth-authorization-code",
+              "params": {
+                "audience": "sdx-cli",
+                "authorize_url": "https://authz-apps-gov-bc-ca.test.api.gov.bc.ca/auth/realms/aps/protocol/openid-connect/auth",
+                "client_id": "sdx-cli",
+                "scopes": "openid",
+                "token_url": "https://authz-apps-gov-bc-ca.test.api.gov.bc.ca/auth/realms/aps/protocol/openid-connect/token"
+              }
+            }
+          }
+        },
+        "tls": {}
+      }
+    }
+    ```
+
+=== "Production"
+
+    Production environment supports the Test data and Production data SDX instances.
+
+    Data and service quality is the same for both SDX instances.
+
+    ```json
+    {
+      "$schema": "https://rest.sh/schemas/apis.json",
+      "sdx": {
+        "base": "https://api.gov.bc.ca/ds/api/sdx/v1",
+        "profiles": {
+          "default": {
+            "auth": {
+              "name": "oauth-authorization-code",
+              "params": {
+                "audience": "sdx-cli",
+                "authorize_url": "https://authz.apps.gov.bc.ca/auth/realms/aps/protocol/openid-connect/auth",
+                "client_id": "sdx-cli",
+                "scopes": "openid",
+                "token_url": "https://authz.apps.gov.bc.ca/auth/realms/aps/protocol/openid-connect/token"
+              }
+            }
+          }
+        },
+        "tls": {}
+      }
+    }
+    ```
+
+### Interacting with the API {#aps-infra-platform-sdx-documentationreferencerestish-cli--interacting-with-the-api}
+
+```sh
+
+-- resync the api specification
+restish api sync sdx
+
+-- help for all supported operations
+restish sdx
+
+-- listing subsystems from the SDX catalog
+restish sdx subsystems-list
+
+-- listing organizations from the SDX catalog
+restish sdx organization-list
+
+-- creation example
+restish sdx upsert-subsystem ministry-of-books name: BOOKY, description: "Some booky system"
+
+-- deletion example
+restish sdx delete-subsystem ministry-of-books BOOKY
+
+-- piping will pass without color, only body, default JSON format
+restish sdx organization-list | cat
+
+-- output YAML
+restish sdx organization-list -o yaml
+```
+
+<!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/reference/sdx/data-access-protocol.md -->
+
+## SDX Data Access Protocol {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol}
+
+
+The exchange of data between two organization _Information Systems_ (IS) is
+performed over mTLS between two _Edge Runtime Groups_ ("Edge Runtime").
+
+Certificates for all RGs are signed by an approved Certificate Authority.
+
+An additional layer of authentication is implemented using tokens signed by each
+RG and exchanged using standard HTTP headers.
+
+The Client Edge Runtime prepares an `X-Edge-Token` JWT and passes it to the Service Edge Runtime.
+The Service Edge Runtime validates the token before passing the request to the upstream
+service, then returns a signed `X-Edge-Token` JWT. The Client Edge Runtime validates the
+token before passing the response to the calling client.
+
+### IS Client to Edge (request) {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--is-client-to-edge-request}
+
+| Header Name      | Description                                                               |
+| ---------------- | ------------------------------------------------------------------------- |
+| `X-Client-Id`    | Client subsystem identifier                                               |
+| `Authorization`  | Client identity JWT                                                       |
+| `Correlation-Id` | Optional                                                                  |
+| `Content-Digest` | Optional - request content digest (RFC 9530)<br>`sha-256=:<hash-base64>:` |
+
+The `Authorization` header MUST contain a token that is issued from an approved
+Identity and Authorization Provider. The `azp` claim maps to an SDX Subsystem
+and controls the client connection to the requested target service.
+
+### Message transport {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--message-transport}
+
+### Client Edge to Service Edge (request) {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--client-edge-to-service-edge-request}
+
+The Client Edge Runtime prepares an `X-Edge-Token` JWT signed with its
+private key and adds it to the request headers. The Service Edge Runtime validates
+the JWT using the specified `jwks_uri` and checks it is in a defined allow list.
+
+The Client Edge Runtime creates the content digest if the client does not supply one.
+If the client supplies a digest, the Client Edge Runtime validates it.
+
+| Header Name      | Description                                                    |
+| ---------------- | -------------------------------------------------------------- |
+| `X-Edge-Token`   | JWT                                                            |
+| `X-Client-Id`    | Client subsystem identifier                                    |
+| `X-Service-Id`   | Service identifier                                             |
+| `Content-Digest` | Request content digest (RFC 9530)<br>`sha-256=:<hash-base64>:` |
+| `Authorization`  | Client identity JWT                                            |
+| `Correlation-Id` | If passed, forwards it; otherwise, generates a new UUID        |
+
+**X-Edge-Token JWT:**
+
+| Claim        | Description                                           | Example                      |
+| ------------ | ----------------------------------------------------- | ---------------------------- |
+| `jti`        | Unique identifier for a given token                   | UUID                         |
+| `iat`        | Issued at timestamp when token was created (RFC 7519) |                              |
+| `request_id` | Request ID                                            | UUID                         |
+| `client_id`  | Client subsystem identifier                           | MIN.CITZ.SDG                 |
+| `service_id` | Service identifier                                    | LAB.PUB.LTSA.TITLE-LOOKUP.v1 |
+| `digest`     | Request content digest (RFC 9530)                     | `sha-256=:<hash-base64>:`    |
+| `jwks_uri`   | Client Edge's JWK Set                                 |                              |
+
+### Service Edge to Client Edge (response) {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--service-edge-to-client-edge-response}
+
+The Service Edge Runtime prepares an `X-Edge-Token` JWT signed by its
+private key and adds it to the response headers. The Client Edge Runtime validates
+the JWT using the specified `jwks_uri` and checks it is in a defined allow list.
+
+| Header Name      | Description                                                     |
+| ---------------- | --------------------------------------------------------------- |
+| `X-Edge-Token`   | JWT                                                             |
+| `Content-Digest` | Response content digest (RFC 9530)<br>`sha-256=:<hash-base64>:` |
+
+**X-Edge-Token JWT:**
+
+The Edge Runtime uses the `request_id`, `client_id`, `service_id`, and `digest`
+from the `X-Edge-Token` to populate this token.
+
+| Claim        | Description                                           | Example                      |
+| ------------ | ----------------------------------------------------- | ---------------------------- |
+| `jti`        | Unique identifier for a given token                   | UUID                         |
+| `iat`        | Issued at timestamp when token was created (RFC 7519) |                              |
+| `request_id` | Request ID                                            | UUID                         |
+| `client_id`  | Client subsystem identifier                           | MIN.CITZ.SDG                 |
+| `service_id` | Service identifier                                    | LAB.PUB.LTSA.TITLE-LOOKUP.v1 |
+| `digest`     | Request content digest (RFC 9530)                     | `sha-256=:<hash-base64>:`    |
+| `jwks_uri`   | Service Edge's JWK Set                                |                              |
+
+### Edge to IS Service (request) {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--edge-to-is-service-request}
+
+| Header Name      | Description                                                    |
+| ---------------- | -------------------------------------------------------------- |
+| `X-Edge-Token`   | JWT                                                            |
+| `X-Client-Id`    | Client subsystem identifier                                    |
+| `X-Service-Id`   | Service identifier                                             |
+| `Content-Digest` | Request content digest (RFC 9530)<br>`sha-256=:<hash-base64>:` |
+| `Authorization`  | Client identity JWT                                            |
+| `Correlation-Id` | Passed from the client or generated by the Client Edge Runtime |
+
+### IS Service to Edge (response) {#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol--is-service-to-edge-response}
+
+| Header Name      | Description                                                                |
+| ---------------- | -------------------------------------------------------------------------- |
+| `Content-Digest` | Optional - response content digest (RFC 9530)<br>`sha-256=:<hash-base64>:` |
+
+<!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/reference/sdx/environments.md -->
+
+## SDX Environments {#aps-infra-platform-sdx-documentationreferencesdxenvironments}
+
+
+!!! note "Playground"
+
+    The Playground environment is for service providers to verify the
+    installation of SDX and test new functionality before moving it to production.
+    This environment provides no data or service quality guarantees.
+
+!!! note "Production"
+
+    The Production environment supports the Test data and Production
+    data SDX instances. Data and service quality is the same for both SDX
+    instances. The Production environment also supports a `Staging` environment
+    for runtime group operators to stage infrastructure changes.
+
+### Useful links {#aps-infra-platform-sdx-documentationreferencesdxenvironments--useful-links}
+
+Links to the different services for each environment:
+
+| Service               | Playground                                                                     | Production                                                  |
+| --------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| SDX UI                | [UI](https://sdx-api-gov-bc-ca.test.api.gov.bc.ca)                             | [UI](https://sdx.gov.bc.ca)                                 |
+| SDX Member API        | [API](https://api-gov-bc-ca.test.api.gov.bc.ca/ds/api/sdx/v1/console)          | [API](https://api.gov.bc.ca/ds/api/sdx/v1/console)          |
+| OpenAPI Specification | [OpenAPI](https://api-gov-bc-ca.test.api.gov.bc.ca/ds/api/sdx/v1/openapi.yaml) | [OpenAPI](https://api.gov.bc.ca/ds/api/sdx/v1/openapi.yaml) |
+| API Services Portal   | [APS Portal](https://api-gov-bc-ca.test.api.gov.bc.ca/login?identity=provider) | [APS Portal](https://api.gov.bc.ca/login?identity=provider) |
+
+### Environment labels {#aps-infra-platform-sdx-documentationreferencesdxenvironments--environment-labels}
+
+| APS Environment | SDX Environment | Purpose                  |
+| --------------- | --------------- | ------------------------ |
+| APS Dev         | `apsdev`        | APS internal development |
+| APS Test        | `apstst`        | SDX Playground           |
+| APS Prod        | `stg`           | SDX Staging              |
+| APS Prod        | `bct`           | SDX Non-Prod             |
+| APS Prod        | `bc`            | SDX Prod                 |
+
+### Playground {#aps-infra-platform-sdx-documentationreferencesdxenvironments--playground}
+
+### SDX Playground {#aps-infra-platform-sdx-documentationreferencesdxenvironments--sdx-playground}
+
+Subsystem authentication in SDX is performed using a token that is issued
+by Common SSO.
+
+For access to services in this `Playground` environment, the following token
+issuers are accepted:
+
+- `https://dev.sandbox.loginproxy.gov.bc.ca/auth/realms/standard`
+- `https://test.sandbox.loginproxy.gov.bc.ca/auth/realms/standard`
+- `https://sandbox.loginproxy.gov.bc.ca/auth/realms/standard`
+
+### Production {#aps-infra-platform-sdx-documentationreferencesdxenvironments--production}
+
+### SDX Staging {#aps-infra-platform-sdx-documentationreferencesdxenvironments--sdx-staging}
+
+Subsystem authentication using tokens from Common SSO is not supported in `Staging`.
+
+Clients can use the internal consumer endpoints of the relevant runtime groups
+to call services in this environment.
+
+### SDX Non-Prod {#aps-infra-platform-sdx-documentationreferencesdxenvironments--sdx-non-prod}
+
+For access to services in `Non-Prod`, the following token issuers are accepted:
+
+- `https://dev.loginproxy.gov.bc.ca/auth/realms/standard`
+- `https://test.loginproxy.gov.bc.ca/auth/realms/standard`
+
+!!! note "BC Services Card `sub`"
+
+    For BC Services Card login, both of these environments reference the
+    BCSC Test environment, so they return the same `sub` when it
+    comes to privacy zones.
+
+Services that are running in `Non-Prod` can choose either `dev` or `test` tokens
+from CSS.
+
+!!! note "Token exchange"
+
+    For cases where the service is also calling SDX services, the token is
+    passed through as-is, and SDX performs the token exchange.
+
+### SDX Prod {#aps-infra-platform-sdx-documentationreferencesdxenvironments--sdx-prod}
+
+For access to services in `Prod`, the following token issuers are accepted:
+
+- `https://loginproxy.gov.bc.ca/auth/realms/standard`
+
 <!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/how-to/sdx-ape-event-mgmt.md -->
 
 ## Event Management {#aps-infra-platform-sdx-documentationhow-tosdx-ape-event-mgmt}
@@ -2438,7 +2931,7 @@ Use cases:
 
 ### Prerequisites {#aps-infra-platform-sdx-documentationhow-tosdx-ape-event-mgmt--prerequisites}
 
-- [Install Restish CLI](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/restish-cli.md)
+- [Install Restish CLI](#aps-infra-platform-sdx-documentationreferencerestish-cli)
 
 ### Register an async service {#aps-infra-platform-sdx-documentationhow-tosdx-ape-event-mgmt--register-an-async-service}
 
@@ -2530,7 +3023,7 @@ The RS published an AsyncAPI spec to state all the events it will publish.
 The RS will use its local runtime group publisher endpoint to send a message.
 
 The client authentication will use the same approach described in the
-[SDX Data Access Protocol](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/sdx/data-access-protocol.md) document.
+[SDX Data Access Protocol](#aps-infra-platform-sdx-documentationreferencesdxdata-access-protocol) document.
 
 ```sh
 curl -v -H "Host:internal.share0.servers.sdx" \
@@ -2663,9 +3156,9 @@ items := {row |
 ## Introduction {#efv-techdoc-efv-techdoc-v3}
 
 
-## Eligibility Factor Verification, or EFV, helps government programs check specific facts used in eligibility decisions. {#efv-techdoc-efv-techdoc-v3--eligibility-factor-verification-or-efv-helps-government-programs-check-specific-facts-used-in-eligibility-decisions}
+Eligibility Factor Verification, or EFV, helps government programs check specific facts used in eligibility decisions.
 
-## Many programs need to confirm similar things, such as income, residency, or other information an applicant provides. Today, this can involve manual document review, screenshots, forms, or staff follow-up. EFV is intended to reduce that effort by helping programs check certain facts against approved or trusted data sources, where available. {#efv-techdoc-efv-techdoc-v3--many-programs-need-to-confirm-similar-things-such-as-income-residency-or-other-information-an-applicant-provides-today-this-can-involve-manual-document-review-screenshots-forms-or-staff-follow-up-efv-is-intended-to-reduce-that-effort-by-helping-programs-check-certain-facts-against-approved-or-trusted-data-sources-where-available}
+Many programs need to confirm similar things, such as income, residency, or other information an applicant provides. Today, this can involve manual document review, screenshots, forms, or staff follow-up. EFV is intended to reduce that effort by helping programs check certain facts against approved or trusted data sources, where available.
 
 EFV does not decide if someone is eligible for a program. EFV is not a program rule engine. It does not approve or deny applications. It helps check facts that a program may use in its own decision process. The program still owns its eligibility rules and makes the final decision.
 
@@ -2674,7 +3167,6 @@ EFV can support a program by returning a verification result and related informa
 EFV is in early development. The first focus is income verification. Future eligibility factors may be explored over time based on program need, source availability, agreements, policy authority, privacy and security requirements, and technical feasibility.\
 \
 Example (in a call outbox)
-===========================================================================================================================================================================================================================================================================================================================================
 
 > A program may need to confirm whether an applicant meets an income rule.
 >
@@ -2782,9 +3274,9 @@ Before a factor can be supported through EFV, the EFV team needs to understand:
 
 - Whether there is a practical technical path to access or verify the information
 
-## Data providers need confidence that their information will only be requested and used for an approved purpose and under the required conditions. As part of developing an eligibility factor, the EFV team can help identify what requirements may need to be supported. This may include technical, legal, privacy, consent, agreement, and business requirements. This may include determining whether a required authorization or consent check needs to occur before a verification request is sent. The specific approach will depend on the provider, program, data source, and approved use case. {#efv-techdoc-efv-techdoc-v3--data-providers-need-confidence-that-their-information-will-only-be-requested-and-used-for-an-approved-purpose-and-under-the-required-conditions-as-part-of-developing-an-eligibility-factor-the-efv-team-can-help-identify-what-requirements-may-need-to-be-supported-this-may-include-technical-legal-privacy-consent-agreement-and-business-requirements-this-may-include-determining-whether-a-required-authorization-or-consent-check-needs-to-occur-before-a-verification-request-is-sent-the-specific-approach-will-depend-on-the-provider-program-data-source-and-approved-use-case}
+Data providers need confidence that their information will only be requested and used for an approved purpose and under the required conditions. As part of developing an eligibility factor, the EFV team can help identify what requirements may need to be supported. This may include technical, legal, privacy, consent, agreement, and business requirements. This may include determining whether a required authorization or consent check needs to occur before a verification request is sent. The specific approach will depend on the provider, program, data source, and approved use case.
 
-## A factor should not be presented as available until the source, permitted purpose, authority, agreement needs, technical path, and support needs are understood well enough to guide users. {#efv-techdoc-efv-techdoc-v3--a-factor-should-not-be-presented-as-available-until-the-source-permitted-purpose-authority-agreement-needs-technical-path-and-support-needs-are-understood-well-enough-to-guide-users}
+A factor should not be presented as available until the source, permitted purpose, authority, agreement needs, technical path, and support needs are understood well enough to guide users.
 
 ## Income Verification {#efv-techdoc-efv-techdoc-v3--income-verification}
 

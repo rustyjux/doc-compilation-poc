@@ -121,6 +121,20 @@ def fetch_git(source: dict[str, Any]) -> dict[str, Any]:
         destination = INPUT_DIR / source["id"] / relative_path
         files.append(copy_and_describe(path, destination, relative_path.as_posix()))
 
+    selected_assets: dict[Path, None] = {}
+    for pattern in source.get("assets", []):
+        for path in source_root.glob(pattern):
+            if path.is_file():
+                selected_assets[path] = None
+    if source.get("assets") and not selected_assets:
+        raise ValueError(f"No files matched the asset rules for {source['id']}")
+
+    assets = []
+    for path in sorted(selected_assets):
+        relative_path = path.relative_to(source_root)
+        destination = INPUT_DIR / source["id"] / relative_path
+        assets.append(copy_and_describe(path, destination, relative_path.as_posix()))
+
     locked_source = {
         "id": source["id"],
         "title": source["title"],
@@ -130,9 +144,11 @@ def fetch_git(source: dict[str, Any]) -> dict[str, Any]:
         "revision": revision,
         "root": source.get("root", "."),
         "order": source["order"],
-        "content_sha256": combined_sha256(files),
+        "content_sha256": combined_sha256([*files, *assets]),
         "files": files,
     }
+    if assets:
+        locked_source["assets"] = assets
 
     if navigation_path := source.get("navigation"):
         navigation_file = source_root / navigation_path

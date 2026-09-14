@@ -1,15 +1,15 @@
 schema_version: 1
-generated_at: '2026-09-14T20:43:49.463419+00:00'
+generated_at: '2026-09-14T22:50:11.765061+00:00'
 sources:
 - id: connected-services-getting-started
   title: Connected Services - Getting Started
   type: git
   repository: https://github.com/bcgov/connected-services-techdocs.git
-  ref: main
-  revision: 78dfbd47461f218c6de26740075b142761f495c6
+  ref: feature/aps-4786-sdx-techdocs
+  revision: 50959b28d410f638f0bccdd48f49c35f4179c24e
   root: getting-started
   order: 10
-  content_sha256: 38328cea15729b228c0da9e3300936f86a208df148320dcb77ee380d70b498d6
+  content_sha256: 63080f8d2279fbcbc62c6c79b4fcf8510ea7df42725c71017f97320368eb9b29
   files:
   - path: docs/authoritative-data-register.md
     sha256: 98cfc8295e68cff2d600052996b852f9c4d8713eed25bbfd3071469305762916
@@ -36,17 +36,17 @@ sources:
     sha256: ad048ae3abed74aca9bfaa4ce833fd301e6c28b65d64586bb150657af915d9a6
     size_bytes: 2392
   - path: docs/roles-and-responsibilities.md
-    sha256: 9eeadb0b27419cd12ff287e9df3e415d59f129e06a072b2d3c5d3145882b74dc
-    size_bytes: 2375
+    sha256: e17b3a86d733497b82cda247a16f2493d8354f4c237843b128924fa607d67962
+    size_bytes: 2370
   - path: docs/secure-data-exchange.md
-    sha256: ee74dc5f32bd1aa2c76d1265140aceb8be7a7c63c3e65618fa98a57dfe8915e2
-    size_bytes: 3360
+    sha256: 8afa50e0b89da5e681bac68babd866940099cf58c64cb382968162a4eaff621c
+    size_bytes: 3135
   - path: docs/support.md
     sha256: 2a9b8b06ccc073dcbaf667316d1545205eb8240614e24161337729910cc06dc1
     size_bytes: 3548
   navigation:
     path: mkdocs.yml
-    sha256: 096e23a5657bdcd03be1a8e8798efda8d06ba054d9be5df2fddea654de58fff4
+    sha256: 9905fb55af5ad641e43ed271dd485faade32e4e3bb3b3010b56f21ccd8c00d3d
     docs_dir: docs
     unlisted_files: []
   document_order:
@@ -62,15 +62,21 @@ sources:
   - docs/limits-and-constraints.md
   - docs/support.md
 - id: aps-infra-platform-sdx
-  title: APS Infrastructure Platform - SDX How-to Guides
+  title: APS Infrastructure Platform - SDX Documentation
   type: git
   repository: https://github.com/bcgov/aps-infra-platform.git
   ref: test
   revision: 5cfc532b822ce6a034764ff5437c68e85e42d01c
   root: .
   order: 20
-  content_sha256: cec51e5dd719b61d429f4e2792b6f6ae3fea6e4fb5a0e6535cedf45a997ae490
+  content_sha256: af5b32043074b2d80e83adf79b87f400a04a9d0fe57f3b706980f81b2068a732
   files:
+  - path: documentation/concepts/secure-data-exchange.md
+    sha256: 682e2c7faf92582d9bc677d08a2fc3d6a6c235855e1243b7e39d41c5e9bbdbc0
+    size_bytes: 3685
+  - path: documentation/how-to/get-support.md
+    sha256: 4b4f9c8d2ef711de55b60ae8675e34f872f1120c72d0c11da67ba76b87ed23ba
+    size_bytes: 3698
   - path: documentation/how-to/sdx-ape-event-mgmt.md
     sha256: afeecc76822358660fb86e254118b0a1abb5e480a2cb4012e9e35b81aa4b6599
     size_bytes: 3651
@@ -98,6 +104,19 @@ sources:
   - path: documentation/how-to/sdx-subsystems.md
     sha256: 59a96d46517a3a5086223bc3f03aa7dd5fa93b970ae5e129581883d21799de26
     size_bytes: 8634
+  - path: documentation/reference/restish-cli.md
+    sha256: f1f816813f6c6dd8bba6308c1d114fe1d36024b4a6bccaa25f219e2154ce1cff
+    size_bytes: 4605
+  - path: documentation/reference/sdx/data-access-protocol.md
+    sha256: 54c9bb6fdf43c97e8cb2cd3932fb4b26685d1c33269e78301ccebb05cdfd5966
+    size_bytes: 6445
+  - path: documentation/reference/sdx/environments.md
+    sha256: 90b696c88a7f8e399ef5a4d918050c5992805b15377d63b8ffca59ffbbd6eec4
+    size_bytes: 3638
+  assets:
+  - path: documentation/artifacts/SDX.svg
+    sha256: 1a5f35ac09327eb7cf2c50238eff35fb156ff85cf84fd2047f29218b89db6c83
+    size_bytes: 477714
   navigation:
     path: mkdocs.yml
     sha256: 9dc83b1114534d2011be10d0c031b1c44a3056999d66eb94cea07b333eda2ec3
@@ -106,6 +125,7 @@ sources:
     - documentation/how-to/sdx-ape-event-mgmt.md
     - documentation/how-to/sdx-ape-policy-mgmt.md
   document_order:
+  - documentation/how-to/get-support.md
   - documentation/how-to/sdx-org-onboarding.md
   - documentation/how-to/sdx-edge-runtime-groups.md
   - documentation/how-to/sdx-org-signing.md
@@ -113,6 +133,10 @@ sources:
   - documentation/how-to/sdx-services.md
   - documentation/how-to/sdx-connections.md
   - documentation/how-to/sdx-connection-resources.md
+  - documentation/concepts/secure-data-exchange.md
+  - documentation/reference/restish-cli.md
+  - documentation/reference/sdx/data-access-protocol.md
+  - documentation/reference/sdx/environments.md
   - documentation/how-to/sdx-ape-event-mgmt.md
   - documentation/how-to/sdx-ape-policy-mgmt.md
   techdocs_component: aps-infra-platform-docs
@@ -121,8 +145,8 @@ sources:
   type: docx
   location: sources/EFV TechDoc - V3.docx
   order: 30
-  content_sha256: b32ab403c1618a1ece5f982a92577afb83bc0c170ea58923be358338252d8f3a
+  content_sha256: 2af807e24a86a0b711ff528117e2ce0d360abf59449ae339b3fe4aa1c8306f56
   files:
   - path: EFV TechDoc - V3.docx
-    sha256: 7f2ef7c2ca60b23be65b9bf8661dc8dc0b3f22b0fd1261968281fab39dc56499
-    size_bytes: 32459
+    sha256: 5e0ec8e7ee9b2f0b814217d90e4d0f2f68cd0ca2b1f2e8d6c0d5050c4b7c9c60
+    size_bytes: 32351

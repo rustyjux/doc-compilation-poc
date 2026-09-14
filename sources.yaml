@@ -14,7 +14,7 @@ sources:
     title: Connected Services - Getting Started
     type: git
     repository: https://github.com/bcgov/connected-services-techdocs.git
-    ref: main
+    ref: feature/aps-4786-sdx-techdocs
     root: getting-started
     navigation: mkdocs.yml
     include:
@@ -22,7 +22,7 @@ sources:
     order: 10
 
   - id: aps-infra-platform-sdx
-    title: APS Infrastructure Platform - SDX How-to Guides
+    title: APS Infrastructure Platform - SDX Documentation
     type: git
     repository: https://github.com/bcgov/aps-infra-platform.git
     ref: test
@@ -30,5 +30,14 @@ sources:
     navigation: mkdocs.yml
     techdocs_component: aps-infra-platform-docs
     include:
+      - documentation/concepts/secure-data-exchange.md
       - documentation/how-to/sdx-*.md
+      # Linked from the selected SDX/Connected Services pages; keep in this
+      # source for now even though they sit outside the SDX how-to section.
+      - documentation/how-to/get-support.md
+      - documentation/reference/restish-cli.md
+      - documentation/reference/sdx/data-access-protocol.md
+      - documentation/reference/sdx/environments.md
+    assets:
+      - documentation/artifacts/SDX.svg
     order: 20

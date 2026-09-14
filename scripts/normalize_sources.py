@@ -59,6 +59,13 @@ def normalize_markdown(source: dict[str, Any], output: Path) -> list[dict[str, A
                 **describe_file(destination, output),
             }
         )
+
+    for asset in source.get("assets", []):
+        source_path = input_root / asset["path"]
+        destination = output / asset["path"]
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_path, destination)
+
     return documents
 
 

@@ -287,8 +287,12 @@ def rewrite_target(
         return f"#{anchor}"
 
     if target_path:
-        normalized_asset = posixpath.normpath(
-            posixpath.join(posixpath.dirname(current["path"]), target_path)
+        normalized_asset = (
+            posixpath.normpath(target_path.lstrip("/"))
+            if target_path.startswith("/")
+            else posixpath.normpath(
+                posixpath.join(posixpath.dirname(current["path"]), target_path)
+            )
         )
         asset = assets_by_alias.get((current["source_id"], normalized_asset))
         if asset:
@@ -396,7 +400,12 @@ def main() -> None:
             output_path = OUTPUT_DIR / output_relative
             output_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(input_path, output_path)
-            assets_by_alias[(source["id"], asset["path"])] = output_relative.as_posix()
+            aliases = {asset["path"]}
+            docs_dir = source.get("navigation", {}).get("docs_dir")
+            if docs_dir and asset["path"].startswith(f"{docs_dir}/"):
+                aliases.add(asset["path"].removeprefix(f"{docs_dir}/"))
+            for alias in aliases:
+                assets_by_alias[(source["id"], alias)] = output_relative.as_posix()
 
     validation = {
         "rewritten_links": 0,
