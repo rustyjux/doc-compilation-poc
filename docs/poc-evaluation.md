@@ -32,9 +32,9 @@ uncertainty, incomplete fidelity, or a workaround that needs further validation.
 | Output formats                | <span class="status-pass">✅ Met</span>        | Markdown, PDF, and a shareable GitHub Pages site                               |
 | Candidate vs approved         | <span class="status-not-yet">🕒 Not yet</span> | Deploy is from `main`; no review or approval gate                              |
 
-The summary above covers the observable output. The decision-framework
-assessment below covers the qualities of the underlying process.
-[View the decision-framework criteria here.](#decision-framework-criteria)
+The summary above covers the observable output. The [decision-framework
+assessment](#assessment-against-the-decision-framework) below covers the
+qualities of the underlying process.
 
 ## Scope demonstrated
 
