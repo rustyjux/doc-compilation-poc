@@ -787,8 +787,8 @@ To see our historical uptime and any current incidents, visit the [APS status pa
 
 ### Next steps {#aps-infra-platform-sdx-documentationhow-toget-support--next-steps}
 
-- [Geographic Redundancy and Failover](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/concepts/geo-redundancy.md)
-- [Production Readiness Checklist](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/prod-checklist.md) 
+- [Geographic Redundancy and Failover](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/concepts/geo-redundancy)
+- [Production Readiness Checklist](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/how-to/prod-checklist) 
 
 <!-- source: https://github.com/bcgov/aps-infra-platform.git@5cfc532b822ce6a034764ff5437c68e85e42d01c:./documentation/how-to/sdx-org-onboarding.md -->
 
@@ -1947,7 +1947,7 @@ For details about valid `environment` values, visit [Environment labels](#aps-in
     explicitly through connection `upgrades` — see the `token`,
     `consumerMatch`, and `tokenExchange` options in
     [Connection Resources](#aps-infra-platform-sdx-documentationhow-tosdx-connection-resources) and the
-    [JWT Keycloak plugin](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/plugins/jwt-keycloak.md) — and, as
+    [JWT Keycloak plugin](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/reference/plugins/jwt-keycloak) — and, as
     deployed today, the JWT guard verifies the token's signature, issuer,
     expiry, and `sub`, but does not itself verify `scope`, audience, or
     authorized party. Treat declared OAS scopes as descriptive metadata

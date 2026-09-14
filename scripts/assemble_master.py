@@ -311,14 +311,31 @@ def rewrite_target(
         }
     )
     if raw_target.startswith("/docs/default/"):
-        return f"https://developer.gov.bc.ca{raw_target}"
+        return public_techdocs_url(raw_target)
     component = current["source"].get("techdocs_component")
     if component and raw_target.startswith("/"):
-        return (
-            "https://developer.gov.bc.ca/docs/default/component/"
-            f"{component}{raw_target}"
-        )
+        return public_techdocs_url(raw_target, component)
     return target
+
+
+def public_techdocs_url(path: str, component: str | None = None) -> str:
+    """Build a public DevHub URL; drop .md so the link works outside MkDocs."""
+    path_part, _, fragment = path.partition("#")
+    path_part, _, query = path_part.partition("?")
+    if path_part.endswith(".md"):
+        path_part = path_part[: -len(".md")]
+    if component:
+        url = (
+            "https://developer.gov.bc.ca/docs/default/component/"
+            f"{component}{path_part}"
+        )
+    else:
+        url = f"https://developer.gov.bc.ca{path_part}"
+    if query:
+        url += f"?{query}"
+    if fragment:
+        url += f"#{fragment}"
+    return url
 
 
 def rewrite_line(
