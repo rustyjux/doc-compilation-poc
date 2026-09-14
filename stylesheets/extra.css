@@ -1,0 +1,8 @@
+/* Keep pop-out icons inside external links aligned with link text. */
+.md-typeset a img[src$="external-link.svg"] {
+  display: inline;
+  height: 0.75em;
+  width: 0.75em;
+  margin-inline-start: 0.15em;
+  vertical-align: text-top;
+}

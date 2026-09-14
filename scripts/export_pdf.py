@@ -13,6 +13,7 @@ MASTER_PATH = PROJECT_ROOT / "dist" / "master.md"
 PDF_MARKDOWN_PATH = PROJECT_ROOT / ".work" / "master.pdf.md"
 PDF_PATH = PROJECT_ROOT / "dist" / "master.pdf"
 PDF_CODEBLOCK_STYLE = PROJECT_ROOT / "templates" / "pdf-codeblocks.typ"
+EXTERNAL_LINK_ICON = PROJECT_ROOT / "templates" / "external-link.svg"
 
 
 def main() -> None:
@@ -22,10 +23,15 @@ def main() -> None:
         raise FileNotFoundError("Run install_pandoc.py before exporting PDF")
     if not TYPST_PATH.is_file():
         raise FileNotFoundError("Run install_typst.py before exporting PDF")
+    if not EXTERNAL_LINK_ICON.is_file():
+        raise FileNotFoundError(f"Missing external link icon: {EXTERNAL_LINK_ICON}")
 
     PDF_MARKDOWN_PATH.parent.mkdir(parents=True, exist_ok=True)
     PDF_MARKDOWN_PATH.write_text(
-        prepare_pdf_markdown(MASTER_PATH.read_text(encoding="utf-8")),
+        prepare_pdf_markdown(
+            MASTER_PATH.read_text(encoding="utf-8"),
+            external_link_icon="templates/external-link.svg",
+        ),
         encoding="utf-8",
     )
 
@@ -35,7 +41,10 @@ def main() -> None:
             str(PDF_MARKDOWN_PATH),
             "--from=markdown+header_attributes",
             f"--pdf-engine={TYPST_PATH}",
-            f"--resource-path={MASTER_PATH.parent}",
+            # Pandoc extracts linked images to absolute temp paths; allow Typst to
+            # open those absolute filesystem paths.
+            "--pdf-engine-opt=--root=/",
+            f"--resource-path={PROJECT_ROOT}:{MASTER_PATH.parent}",
             f"--include-in-header={PDF_CODEBLOCK_STYLE}",
             f"--output={PDF_PATH}",
         ],

@@ -6,6 +6,23 @@ import re
 TAB_MARKER = re.compile(r'^=== "([^"]+)"\s*$')
 ADMONITION_MARKER = re.compile(r"^(!!!|\?\?\?\+?)\s+(.+?)\s*$")
 ADMONITION_TITLE = re.compile(r'\s+"([^"]*)"\s*$')
+EXTERNAL_LINK_PATTERN = re.compile(
+    r"(?<!!)"  # do not match images
+    r"\[([^\]]+)\]\((https?://[^)\s]+)(\s+\"[^\"]*\")?\)"
+)
+
+
+def mark_external_links(markdown: str, icon_path: str) -> str:
+    """Embed a pop-out icon inside absolute http(s) Markdown link labels."""
+
+    def replace(match: re.Match[str]) -> str:
+        label, target, title = match.group(1), match.group(2), match.group(3) or ""
+        if icon_path in label or "external-link.svg" in label:
+            return match.group(0)
+        icon = f"![]({icon_path}){{width=0.7em}}"
+        return f"[{label}{icon}]({target}{title})"
+
+    return EXTERNAL_LINK_PATTERN.sub(replace, markdown)
 
 
 def _trim_blank_edges(lines: list[str]) -> list[str]:
@@ -111,6 +128,9 @@ def expand_tabs(markdown: str) -> str:
     return "\n".join(result).rstrip() + "\n"
 
 
-def prepare_pdf_markdown(markdown: str) -> str:
+def prepare_pdf_markdown(markdown: str, external_link_icon: str | None = None) -> str:
     """Apply PDF-oriented Markdown transforms for Material syntax."""
-    return expand_tabs(expand_admonitions(markdown))
+    transformed = expand_tabs(expand_admonitions(markdown))
+    if external_link_icon:
+        transformed = mark_external_links(transformed, external_link_icon)
+    return transformed

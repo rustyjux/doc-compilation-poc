@@ -10,6 +10,9 @@ from typing import Any
 import yaml
 
 
+from expand_tabs import mark_external_links
+
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DIST_DIR = PROJECT_ROOT / "dist"
 PAGE_DIR = PROJECT_ROOT / ".work" / "pages"
@@ -44,7 +47,7 @@ def prepare_page(markdown: str) -> str:
             level = len(heading.group(1))
             lines[index] = f"{'#' * min(level + 1, 6)}{heading.group(2)}"
 
-    return "\n".join(lines) + "\n"
+    return mark_external_links("\n".join(lines) + "\n", "assets/external-link.svg")
 
 
 def _short_sha(value: str, length: int = 12) -> str:
@@ -160,15 +163,28 @@ def main() -> None:
         encoding="utf-8",
     )
     (PAGE_DIR / "manifest.md").write_text(
-        render_manifest_page(source_lock, normalized_manifest),
+        mark_external_links(
+            render_manifest_page(source_lock, normalized_manifest),
+            "assets/external-link.svg",
+        ),
         encoding="utf-8",
     )
     shutil.copy2(pdf_path, PAGE_DIR / pdf_path.name)
     shutil.copy2(report_path, PAGE_DIR / report_path.name)
 
+    stylesheet_source = PROJECT_ROOT / "stylesheets" / "extra.css"
+    stylesheet_destination = PAGE_DIR / "stylesheets" / "extra.css"
+    stylesheet_destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(stylesheet_source, stylesheet_destination)
+
+    icon_source = PROJECT_ROOT / "templates" / "external-link.svg"
+    page_assets = PAGE_DIR / "assets"
+    page_assets.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(icon_source, page_assets / icon_source.name)
+
     asset_dir = DIST_DIR / "assets"
     if asset_dir.is_dir():
-        shutil.copytree(asset_dir, PAGE_DIR / "assets")
+        shutil.copytree(asset_dir, PAGE_DIR / "assets", dirs_exist_ok=True)
 
     result = subprocess.run(
         [sys.executable, "-m", "mkdocs", "build", "--strict"],

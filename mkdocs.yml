@@ -15,6 +15,9 @@ nav:
   - Source manifest: manifest.md
   - Validation report: validation-report.md
 
+extra_css:
+  - stylesheets/extra.css
+
 markdown_extensions:
   - attr_list
   - md_in_html
