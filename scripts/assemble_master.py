@@ -386,7 +386,7 @@ def main() -> None:
         source_anchor = slugify(f"source--{source['id']}")
         output.append(f"- [{source['title']}](#{source_anchor})")
         output.extend(
-            f"  - [{document['title']}](#{document['anchor']})"
+            f"    - [{document['title']}](#{document['anchor']})"
             for document in source_documents
         )
 
